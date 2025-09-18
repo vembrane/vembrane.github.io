@@ -1,4 +1,4 @@
-color: violet-800
+color: violet
 
 features:
 - title: Python expression based VCF/BCF transformation
