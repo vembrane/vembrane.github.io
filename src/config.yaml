@@ -59,7 +59,7 @@ features:
 header:
   links:
   - text: Github
-    url: https://github.com/vermbrane/vembrane
+    url: https://github.com/vembrane/vembrane
   logo: logo.svg
   name: "" # name is already part of the logo
 
