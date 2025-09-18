@@ -74,6 +74,7 @@ hero:
     url: https://doi.org/10.1093/bioinformatics/btac810
   statements:
   - Python expression based VCF/BCF transformation
+  - Filter, tag, convert to tables, annotate, sort, and convert to structured formats like JSON, JSONL, YAML or FHIR
 
 logo:
   dark: logo_dark.svg
