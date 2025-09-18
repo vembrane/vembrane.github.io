@@ -9,35 +9,50 @@ features:
   desc: |
     Filter VCF/BCF files using Python expressions over elements of your VCF/BCF records, including annotations.
   code: |
-    vembrane !filter! 'CHROM !==! "chr3" !and! ANN["Consequence"]!.any_is_a!("frameshift_variant")' variants.bcf
+    vembrane !filter! 'CHROM !==! "chr3" \
+    !and! ANN["Consequence"]!.any_is_a!("frameshift_variant")' \
+    variants.bcf
 - title: Tag VCF/BCF files
   code: |
-    vembrane !tag! --tag quality_at_least_30="QUAL !>=! 30" variants.vcf
+    vembrane !tag! \
+    !--tag! quality_at_least_30="QUAL !>=! 30" \
+    variants.vcf
   desc: |
     Use Python expressions to tag VCF/BCF records.
 - title: Convert VCF/BCF to tables
   code: |
-    vembrane table 'CHROM, POS, 10**(-QUAL/10), ANN["CLIN_SIG"]' input.vcf > table.tsv
+    vembrane !table! \
+    'CHROM, POS, 10!**!(!-!QUAL/10), ANN["CLIN_SIG"]' \
+    input.vcf > table.tsv
   desc: |
     Convert VCF/BCF files to tables, defining columns via Python expressions.
 - title: Annotate VCF/BCF files
   code: |
-    vembrane !annotate! example.yaml example.bcf > annotated.vcf
+    vembrane !annotate! \
+    example.yaml example.bcf \
+    > annotated.vcf
   desc: |
     Annotate VCF/BCF files using a declarative YAML configuration file with Python expressions that describe how the fields are filled.
 - title: Sort VCF/BCF files
   code: |
-    vembrane !sort! input.vcf '!round!(ANN["gnomad_AF"], 1), !-!ANN["REVEL"]' > prioritized.vcf
+    vembrane !sort! input.vcf \
+    '!round!(ANN["gnomad_AF"], 1), !-!ANN["REVEL"]' \
+    > prioritized.vcf
   desc: |
     Sort VCF/BCF files. The sort order can be defined via flexible Python expressions and thus be based on any field and annotation that occurs in the VCF/BCF (e.g. impact or clinical significance). The primary use case is variant prioritization.
 - title: Convert VCF/BCF records into structured representations
   code: |
-    vembrane !structured! template.yml input.vcf --output output.json
+    vembrane !structured! \
+    template.yml input.vcf \
+    !--output! output.json
   desc: |
     Converts VCF records into structured formats like JSON, JSONL, or YAML using a flexible [YTE](https://yte-template-engine.github.io) template.
 - title: Convert VCF/BCF records to FHIR
   code: |
-    vembrane fhir tumor GRCh38 --profile mii_molgen_v2025.0.0 --output-fmt json --annotation-key ANN < sample.vcf > sample-tumor.fhir.json
+    vembrane !fhir! \
+    tumor GRCh38 --profile mii_molgen_v2025.0.0 \
+    !--output-fmt! json !--annotation-key! ANN \
+    < sample.vcf > sample-tumor.fhir.json
   desc: |
     Convert VCF/BCF records to [FHIR](https://www.hl7.org/fhir/index.html). The implementation is extensible by additional profiles.
 
